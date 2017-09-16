@@ -5,12 +5,10 @@ class UriChecker
 
   def check_for_response(uri)
     begin
-      Timeout.timeout(5) do
-        open(uri)
-      end
-    end
+      Timeout.timeout(5) { open(uri) }
     rescue
       'timeout'
+    end
   end
 
 
