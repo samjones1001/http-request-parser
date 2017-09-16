@@ -2,13 +2,18 @@ require 'uri_checker'
 
 describe UriChecker do
   before do
-    stub_request(:any, "http://www.valid.com")
+    stub_request(:any, 'http://www.valid.com')
+    stub_request(:any, 'http://www.requesttimeout.com').to_timeout
   end
 
   describe '#check_for_response' do
       it 'gets a response from a valid url' do
         res = subject.check_for_response('http://www.valid.com')
         expect(res.status).to include("200")
+      end
+
+      it 'raises an error on timeout' do
+        expect(subject.check_for_response('http://www.requesttimeout.com')).to eq('timeout')
       end
   end
 
