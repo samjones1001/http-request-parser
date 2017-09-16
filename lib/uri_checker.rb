@@ -1,7 +1,7 @@
 class UriChecker
+  require 'uri'
 
   def is_valid_uri?(uri)
-    valid_structure = Regexp.new(/^https?:\/\/\w+.\w+(\.\w+)?/)
-    uri =~ valid_structure ? true : false
+    uri =~ /\A#{URI::regexp(['http', 'https'])}\z/ ? true : false
   end
 end

@@ -11,7 +11,7 @@ describe UriChecker do
     end
 
     it 'returns false if provided with an invalid uri' do
-      expect(subject.is_valid_uri?('https://validuri.com')).to be(true)
+      expect(subject.is_valid_uri?('invaliduri.jpg')).to be(false)
     end
   end
 end
