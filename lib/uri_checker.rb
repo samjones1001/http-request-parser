@@ -1,9 +1,10 @@
 class UriChecker
   require 'uri'
   require 'net/http'
+  require 'open-uri'
 
   def check_for_response(uri)
-    Net::HTTP.get_response(URI.parse(uri))
+    open(uri, :read_timeout => 10)
   end
 
   def is_valid_uri?(uri)

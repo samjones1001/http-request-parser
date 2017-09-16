@@ -2,12 +2,13 @@ require 'uri_checker'
 
 describe UriChecker do
   before do
-    stub_request(:any, "http://www.example.com")
+    stub_request(:any, "http://www.valid.com")
   end
 
   describe '#check_for_response' do
       it 'gets a response from a valid url' do
-        expect(subject.check_for_response('http://www.example.com')).to be_an_instance_of(Net::HTTPOK)
+        res = subject.check_for_response('http://www.valid.com')
+        expect(res.status).to include("200")
       end
   end
 
