@@ -12,7 +12,7 @@ describe FileParser do
       expect(subject.parse(file)).to include("uri_1")
     end
 
-    it 'reatins all lines of the file' do
+    it 'retains all lines of the file' do
       expect(subject.parse(file).size).to eq(3)
     end
   end
