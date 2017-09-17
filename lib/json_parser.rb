@@ -9,7 +9,6 @@ class JsonParser
       'date' => headers['date']
     })
     pretty_print(response_json)
-    response_json
   end
 
   def create_error_json(url, message)
@@ -18,7 +17,6 @@ class JsonParser
       'error' => message
     })
     pretty_print(error_json)
-    error_json
   end
 
   def pretty_print(json)

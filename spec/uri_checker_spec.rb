@@ -9,7 +9,7 @@ describe UriChecker do
     ARGV[0] = "./spec/test_file.txt"
     stub_request(:any, 'http://www.valid.com')
     stub_request(:any, 'http://www.requesttimeout.com').to_timeout
-    stub_request(:any, 'http://www.404error.com')
+    stub_request(:any, 'http://www.404error.com').to_return(status: 404)
   end
 
   it 'holds an instance of FileParser by default' do
