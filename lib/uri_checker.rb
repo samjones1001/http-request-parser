@@ -20,11 +20,11 @@ class UriChecker
     begin
       Timeout.timeout(10) do
         res = open(uri)
-        @json_parser.create_response_json(uri, res.status[0], res)
+        @json_parser.create_response_json(uri, res.status[0], res.meta)
       end
     rescue OpenURI::HTTPError => the_error
       status = the_error.io.status[0]
-      headers = the_error.io
+      headers = the_error.io.meta
       @json_parser.create_response_json(uri, status, headers)
     rescue
       @json_parser.create_error_json(uri, "connection timed out")
