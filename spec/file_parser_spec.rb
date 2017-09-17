@@ -1,7 +1,7 @@
 require 'file_parser'
 
 describe FileParser do
-  let (:file)   { double :File, :read => "uri_1\nuri_2\nuri_3" }
+  let (:file)   { "./assets/example.txt" }
 
   describe '#parse' do
     it 'returns an array' do
@@ -9,11 +9,11 @@ describe FileParser do
     end
 
     it 'retains the content of the file' do
-      expect(subject.parse(file)).to include("uri_1")
+      expect(subject.parse(file)).to include("https://google.com")
     end
 
     it 'retains all lines of the file' do
-      expect(subject.parse(file).size).to eq(3)
+      expect(subject.parse(file).size).to eq(9)
     end
   end
 end

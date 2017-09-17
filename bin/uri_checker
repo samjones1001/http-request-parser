@@ -1,0 +1,5 @@
+require '../lib/file_parser'
+require '../lib/json_parser'
+require '../lib/uri_checker'
+
+UriChecker.new

@@ -1,7 +1,7 @@
 class FileParser
 
   def parse(file)
-    text = file.read
+    text = open(file).read
     text.split("\n")
   end
 

@@ -3,6 +3,14 @@ class UriChecker
   require 'net/http'
   require 'open-uri'
 
+  attr_reader :file_parser, :json_parser, :uri_array
+
+  def initialize(file_parser = FileParser.new, json_parser = JsonParser.new)
+    @file_parser = file_parser
+    @json_parser = json_parser
+    @uri_array = file_parser.parse(ARGV.first)
+  end
+
   def process_uri(uri)
     check_for_response(uri) if is_valid_uri?(uri)
   end
@@ -16,6 +24,7 @@ class UriChecker
   end
 
   private
+
   def is_valid_uri?(uri)
     uri =~ /\A#{URI::regexp(['http', 'https'])}\z/ ? true : false
   end

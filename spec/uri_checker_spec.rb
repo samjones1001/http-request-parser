@@ -1,9 +1,26 @@
 require 'uri_checker'
 
 describe UriChecker do
+  let(:file_parser)  { double(:file_parser) }
+  let(:json_parser)  { double(:json_parser) }
+  let(:subejct)      { UriChecker.new(file_parser, json_parser) }
+
   before do
+    ARGV[0] = "./assets/example.txt"
     stub_request(:any, 'http://www.valid.com')
     stub_request(:any, 'http://www.requesttimeout.com').to_timeout
+  end
+
+  it 'holds an instance of FileParser by default' do
+    expect(subject.file_parser).to be_an_instance_of(FileParser)
+  end
+
+  it 'holds an instance of JsonParser by default' do
+    expect(subject.json_parser).to be_an_instance_of(JsonParser)
+  end
+
+  it 'holds an array of uris' do
+    expect(subject.uri_array).to be_an_instance_of(Array)
   end
 
   describe '#process_uri' do
