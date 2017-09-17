@@ -18,7 +18,10 @@ class UriChecker
 
   def check_for_response(uri)
     begin
-      Timeout.timeout(5) { open(uri) }
+      Timeout.timeout(5) do
+        res = open(uri)
+        @json_parser.create_response_json(uri, res.status[0], res)
+      end
     rescue
       @json_parser.create_error_json(uri, "connection timed out")
     end

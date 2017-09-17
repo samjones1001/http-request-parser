@@ -54,11 +54,11 @@ describe UriChecker do
 
   describe '#check_for_response' do
       it 'gets a response from a valid url' do
-        res = subject.check_for_response('http://www.valid.com')
-        expect(res.status).to include("200")
+        expect(subject.json_parser).to receive(:create_response_json)
+        subject.check_for_response('http://www.valid.com')
       end
 
-      it 'raises an error on timeout' do
+      it 'creates an error on timeout' do
         expect(subject.json_parser).to receive(:create_error_json)
         subject.check_for_response('http://www.requesttimeout.com')
       end
