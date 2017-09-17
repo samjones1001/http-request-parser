@@ -1,5 +1,4 @@
 class UriChecker
-  require 'uri'
   require 'net/http'
   require 'open-uri'
 
