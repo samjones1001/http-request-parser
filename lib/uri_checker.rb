@@ -9,6 +9,7 @@ class UriChecker
     @file_parser = file_parser
     @json_parser = json_parser
     @uri_array = file_parser.parse(ARGV.first)
+    uri_array.each { |uri| process_uri(uri) }
   end
 
   def process_uri(uri)

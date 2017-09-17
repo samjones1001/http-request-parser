@@ -1,7 +1,7 @@
 require 'file_parser'
 
 describe FileParser do
-  let (:file)   { "./assets/example.txt" }
+  let (:file)   { "./spec/test_file.txt" }
 
   describe '#parse' do
     it 'returns an array' do
@@ -9,11 +9,11 @@ describe FileParser do
     end
 
     it 'retains the content of the file' do
-      expect(subject.parse(file)).to include("https://google.com")
+      expect(subject.parse(file)).to include("http://www.valid.com")
     end
 
     it 'retains all lines of the file' do
-      expect(subject.parse(file).size).to eq(9)
+      expect(subject.parse(file).size).to eq(2)
     end
   end
 end

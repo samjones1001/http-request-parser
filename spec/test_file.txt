@@ -1,0 +1,2 @@
+http://www.valid.com
+http://www.requesttimeout.com

@@ -6,7 +6,7 @@ describe UriChecker do
   let(:subejct)      { UriChecker.new(file_parser, json_parser) }
 
   before do
-    ARGV[0] = "./assets/example.txt"
+    ARGV[0] = "./spec/test_file.txt"
     stub_request(:any, 'http://www.valid.com')
     stub_request(:any, 'http://www.requesttimeout.com').to_timeout
   end
@@ -21,6 +21,11 @@ describe UriChecker do
 
   it 'holds an array of uris' do
     expect(subject.uri_array).to be_an_instance_of(Array)
+  end
+
+  it 'processes each uri at initialization' do
+    expect_any_instance_of(UriChecker).to receive(:process_uri).exactly(2).times
+    UriChecker.new
   end
 
   describe '#process_uri' do
