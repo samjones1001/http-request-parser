@@ -9,6 +9,7 @@ describe UriChecker do
     ARGV[0] = "./spec/test_file.txt"
     stub_request(:any, 'http://www.valid.com')
     stub_request(:any, 'http://www.requesttimeout.com').to_timeout
+    stub_request(:)
   end
 
   it 'holds an instance of FileParser by default' do
@@ -56,6 +57,11 @@ describe UriChecker do
       it 'gets a response from a valid url' do
         expect(subject.json_parser).to receive(:create_response_json)
         subject.check_for_response('http://www.valid.com')
+      end
+
+      it 'gets a response from a uri which returns a http error code' do
+        expect(subject.json_parser).to receive(:create_response_json)
+        subject.check_for_response('http://www.404error.com')
       end
 
       it 'creates an error on timeout' do

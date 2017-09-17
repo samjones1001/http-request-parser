@@ -22,9 +22,14 @@ class UriChecker
         res = open(uri)
         @json_parser.create_response_json(uri, res.status[0], res)
       end
+    rescue OpenURI::HTTPError => the_error
+      status = the_error.io.status[0]
+      headers = the_error.io
+      @json_parser.create_response_json(uri, status, headers)
     rescue
       @json_parser.create_error_json(uri, "connection timed out")
     end
+
   end
 
   private
