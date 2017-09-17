@@ -4,3 +4,4 @@ ruby '2.3.0'
 
 gem 'rspec'
 gem 'webmock'
+gem 'json_spec'
