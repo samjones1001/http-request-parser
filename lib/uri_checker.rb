@@ -20,7 +20,7 @@ class UriChecker
     begin
       Timeout.timeout(5) { open(uri) }
     rescue
-      'timeout'
+      @json_parser.create_error_json(uri, "connection timed out")
     end
   end
 

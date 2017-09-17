@@ -59,7 +59,8 @@ describe UriChecker do
       end
 
       it 'raises an error on timeout' do
-        expect(subject.check_for_response('http://www.requesttimeout.com')).to eq('timeout')
+        expect(subject.json_parser).to receive(:create_error_json)
+        subject.check_for_response('http://www.requesttimeout.com')
       end
   end
 end
