@@ -13,7 +13,7 @@ class UriChecker
   end
 
   def process_uri(uri)
-    check_for_response(uri) if is_valid_uri?(uri)
+    is_valid_uri?(uri) ? check_for_response(uri) : @json_parser.create_error_json(uri, "invalid url")
   end
 
   def check_for_response(uri)

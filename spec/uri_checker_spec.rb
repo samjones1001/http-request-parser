@@ -1,9 +1,9 @@
 require 'uri_checker'
 
 describe UriChecker do
-  let(:file_parser)  { double(:file_parser) }
-  let(:json_parser)  { double(:json_parser) }
-  let(:subejct)      { UriChecker.new(file_parser, json_parser) }
+  let(:file_parser)  { double :file_parser }
+  let(:json_parser)  { double :json_parser }
+  let(:subejct)      { described_class.new(file_parser, json_parser) }
 
   before do
     ARGV[0] = "./spec/test_file.txt"
@@ -41,11 +41,13 @@ describe UriChecker do
 
     it 'does not allow check for response on an invalid uri structure' do
       expect(subject).not_to receive(:check_for_response)
+      expect(subject.json_parser).to receive(:create_error_json)
       subject.process_uri('invaliduri.jpg')
     end
 
     it 'does not allow check for response on a uri with invalid characters' do
       expect(subject).not_to receive(:check_for_response)
+      expect(subject.json_parser).to receive(:create_error_json)
       subject.process_uri('http://<>"#`')
     end
   end
