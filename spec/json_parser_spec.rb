@@ -3,7 +3,7 @@ require 'json_parser'
 describe JsonParser do
   describe '#create_response_json' do
 
-    it 'returns a json object with the correct fields' do
+    it 'outputs a json object with the correct fields' do
       headers = {
         "server"=>"Apache/2.4.7 (Ubuntu)",
         "last-modified"=>"Sat, 16 Sep 2017 08:30:33 GMT",
@@ -21,9 +21,9 @@ describe JsonParser do
   end
 
   describe '#create_error_json' do
-    it 'returns a json object describing the error' do
+    it 'outputs a json object describing the error to stderr' do
       expected_output = %({\n\s\s"url": "example.com",\n\s\s"error": "invalid url"\n}\n)
-      expect{ subject.create_error_json('example.com', 'invalid url') }.to output(expected_output).to_stdout
+      expect{ subject.create_error_json('example.com', 'invalid url') }.to output(expected_output).to_stderr
     end
   end
 end

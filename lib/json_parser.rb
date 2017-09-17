@@ -16,10 +16,10 @@ class JsonParser
       'url' => url,
       'error' => message
     })
-    pretty_print(error_json)
+    pretty_print(error_json, true)
   end
 
-  def pretty_print(json)
-    puts json
+  def pretty_print(json, is_error = false)
+    is_error ? $stderr.puts(json) : puts(json)
   end
 end
